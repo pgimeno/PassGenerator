@@ -226,7 +226,7 @@ class _GeneratorScreenState extends State<GeneratorScreen> {
                     )
                   else
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 18.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
