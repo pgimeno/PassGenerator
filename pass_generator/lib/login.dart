@@ -89,10 +89,13 @@ class _LoginState extends State<Login> {
                   child: svg,
                 ),
                 const SizedBox(height: 20),
-                FButton(
-                  prefix: FIcon(FAssets.icons.logIn),
-                  label: const Text('Access generator'),
-                  onPress: _login,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 78.0),
+                  child: FButton(
+                    prefix: FIcon(FAssets.icons.logIn),
+                    label: const Text('Access generator'),
+                    onPress: _login,
+                  ),
                 ),
                 const SizedBox(height: 30),
                 ClickableLabel(
