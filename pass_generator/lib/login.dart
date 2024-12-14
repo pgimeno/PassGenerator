@@ -24,7 +24,7 @@ class _LoginState extends State<Login> {
     // Set the status bar color
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent, // Transparent status bar
+        statusBarColor: Colors.white, // Set to match the app's background color
         statusBarIconBrightness:
             Brightness.dark, // Dark icons for light backgrounds
         statusBarBrightness: Brightness.light, // iOS-specific
@@ -66,12 +66,12 @@ class _LoginState extends State<Login> {
     );
 
     return Container(
-      color: Colors.white, // Set the background color for the app
-      child: FScaffold(
-        content: SingleChildScrollView(
-          child: Padding(
-            padding: horizontalPadding,
-            child: SafeArea(
+      color: Colors.white, // Background color for the entire screen
+      child: SafeArea(
+        child: FScaffold(
+          content: SingleChildScrollView(
+            child: Padding(
+              padding: horizontalPadding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -108,7 +108,14 @@ class _LoginState extends State<Login> {
                   const SizedBox(height: 20),
                   FButton(
                     prefix: FIcon(FAssets.icons.logIn),
-                    label: const Text('Access generator'),
+                    label: Flexible(
+                      child: Text(
+                        'Access generator',
+                        overflow:
+                            TextOverflow.ellipsis, // Prevents text overflow
+                        softWrap: true, // Allows wrapping
+                      ),
+                    ),
                     onPress: _login,
                   ),
                   const SizedBox(height: 30),
