@@ -116,129 +116,19 @@ class _GeneratorScreenState extends State<GeneratorScreen> {
 
         return FScaffold(
           content: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: isSmallScreen ? 16.0 : 40.0,
-              ),
-              child: SafeArea(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const SizedBox(height: 60),
-                    if (!isSmallScreen)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 80.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Form(
-                                key: _formKey,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    FTextField(
-                                      label: const Text(
-                                        'Generate your password',
-                                        style: TextStyle(fontSize: 22),
-                                      ),
-                                      focusNode: _focusNode,
-                                      readOnly: true,
-                                      textAlign: TextAlign.center,
-                                      controller: _passwordTextController,
-                                    ),
-                                    const SizedBox(height: 5),
-                                    if (showAlert)
-                                      FAlert(
-                                        icon: FIcon(FAssets.icons.smilePlus),
-                                        title: const Text('Nuh uh!'),
-                                        subtitle: const Text(
-                                            'Minimum length for a password should be 8 characters long!'),
-                                      ),
-                                    const SizedBox(height: 10),
-                                    Row(
-                                      children: [
-                                        FButton.icon(
-                                          onPress: () {
-                                            setState(() {
-                                              if (passLength == 8) {
-                                                showAlert = true;
-                                              } else {
-                                                passLength--;
-                                                showAlert = false;
-                                              }
-                                              _generatePassword();
-                                            });
-                                          },
-                                          child: FIcon(FAssets.icons.minus),
-                                        ),
-                                        const SizedBox(width: 10),
-                                        FButton.icon(
-                                          onPress: () {
-                                            setState(() {
-                                              if (passLength < 32) {
-                                                showAlert = false;
-                                                passLength++;
-                                              }
-                                              _generatePassword();
-                                            });
-                                          },
-                                          child: FIcon(FAssets.icons.plus),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 10),
-                                    FSelectTileGroup<CustomizePasswordOptions>(
-                                      controller: _selectTileController,
-                                      label:
-                                          const Text('Customize your password'),
-                                      description: const Text(
-                                          'Tick all options for a stronger password.'),
-                                      validator: (values) => values?.isEmpty ??
-                                              true
-                                          ? 'Please select at least one character type.'
-                                          : null,
-                                      children: [
-                                        FSelectTile(
-                                          title: const Text('Uppercase'),
-                                          value: CustomizePasswordOptions
-                                              .uppercase,
-                                        ),
-                                        FSelectTile(
-                                          title: const Text('Lowercase'),
-                                          value: CustomizePasswordOptions
-                                              .lowercase,
-                                        ),
-                                        FSelectTile(
-                                          title: const Text('Numbers'),
-                                          value:
-                                              CustomizePasswordOptions.numbers,
-                                        ),
-                                        FSelectTile(
-                                          title: const Text('Symbols'),
-                                          value:
-                                              CustomizePasswordOptions.symbols,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 30),
-                            svg, // Display image side-by-side for larger screens
-                          ],
-                        ),
-                      )
-                    else
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 48.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            svg, // Move image above the form for smaller screens
-                            const SizedBox(height: 20),
-                            Form(
+            child: SafeArea(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 60),
+                  if (!isSmallScreen)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 80.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Form(
                               key: _formKey,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -328,12 +218,111 @@ class _GeneratorScreenState extends State<GeneratorScreen> {
                                 ],
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                          const SizedBox(width: 30),
+                          svg, // Display image side-by-side for larger screens
+                        ],
                       ),
-                    const FDivider(),
-                  ],
-                ),
+                    )
+                  else
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          svg, // Move image above the form for smaller screens
+                          const SizedBox(height: 20),
+                          Form(
+                            key: _formKey,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                FTextField(
+                                  label: const Text(
+                                    'Generate your password',
+                                    style: TextStyle(fontSize: 22),
+                                  ),
+                                  focusNode: _focusNode,
+                                  readOnly: true,
+                                  textAlign: TextAlign.center,
+                                  controller: _passwordTextController,
+                                ),
+                                const SizedBox(height: 5),
+                                if (showAlert)
+                                  FAlert(
+                                    icon: FIcon(FAssets.icons.smilePlus),
+                                    title: const Text('Nuh uh!'),
+                                    subtitle: const Text(
+                                        'Minimum length for a password should be 8 characters long!'),
+                                  ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    FButton.icon(
+                                      onPress: () {
+                                        setState(() {
+                                          if (passLength == 8) {
+                                            showAlert = true;
+                                          } else {
+                                            passLength--;
+                                            showAlert = false;
+                                          }
+                                          _generatePassword();
+                                        });
+                                      },
+                                      child: FIcon(FAssets.icons.minus),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    FButton.icon(
+                                      onPress: () {
+                                        setState(() {
+                                          if (passLength < 32) {
+                                            showAlert = false;
+                                            passLength++;
+                                          }
+                                          _generatePassword();
+                                        });
+                                      },
+                                      child: FIcon(FAssets.icons.plus),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                FSelectTileGroup<CustomizePasswordOptions>(
+                                  controller: _selectTileController,
+                                  label: const Text('Customize your password'),
+                                  description: const Text(
+                                      'Tick all options for a stronger password.'),
+                                  validator: (values) => values?.isEmpty ?? true
+                                      ? 'Please select at least one character type.'
+                                      : null,
+                                  children: [
+                                    FSelectTile(
+                                      title: const Text('Uppercase'),
+                                      value: CustomizePasswordOptions.uppercase,
+                                    ),
+                                    FSelectTile(
+                                      title: const Text('Lowercase'),
+                                      value: CustomizePasswordOptions.lowercase,
+                                    ),
+                                    FSelectTile(
+                                      title: const Text('Numbers'),
+                                      value: CustomizePasswordOptions.numbers,
+                                    ),
+                                    FSelectTile(
+                                      title: const Text('Symbols'),
+                                      value: CustomizePasswordOptions.symbols,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  const FDivider(),
+                ],
               ),
             ),
           ),
