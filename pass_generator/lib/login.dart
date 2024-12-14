@@ -108,7 +108,7 @@ class _LoginState extends State<Login> {
                   const SizedBox(height: 20),
                   FButton(
                     prefix: FIcon(FAssets.icons.logIn),
-                    label: const Text('Access generator'),
+                    label: const Text('Access generator dum'),
                     onPress: _login,
                   ),
                   const SizedBox(height: 30),
